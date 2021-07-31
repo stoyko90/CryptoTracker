@@ -1,8 +1,9 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
+const {User} = require('../models/userModel');
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'apple';
+
 async function home(req, res) {
   res.send('You are at home!');
 }
@@ -45,6 +46,8 @@ async function profile(req, res) {
   //TO DO: to send back the user's specific data from the db ( portfolio, trades, etc)
   res.send(req.user.name);
 }
+
+
 
 
 module.exports = {register, home, login, logout, profile};
