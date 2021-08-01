@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+// const { Schema } = require('mongoose');
 const mongoose = require('../db/db');
 
 const userSchema = new mongoose.Schema({
@@ -18,16 +18,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  binanceKey: {
+    type: String
+  },
+  binanceSecret: {
+    type: String
+  },
   assets: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Crypto'
   }]
 });
 
 const  cryptoSchema= new mongoose.Schema({
   owner: {
-    type: Schema.Types.String,
-    ref: 'User'
+    type: String
+    // ref: 'User'
   },
   asset: {
     type: String,

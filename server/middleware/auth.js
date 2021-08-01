@@ -1,5 +1,5 @@
 require('dotenv').config();
-const User = require('../models/userModel');
+const {User} = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'apple';
 
@@ -15,7 +15,7 @@ async function authToken(req, res, next) {
     req.user = user;
     next();
   } catch(error) {
-    res.sendStatus(401);
+    res.status(401).send('something is fucked');
   }
 }
 
