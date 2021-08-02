@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   assets: [{
-    type: mongoose.Schema.Types.String,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Crypto'
   }]
 });
