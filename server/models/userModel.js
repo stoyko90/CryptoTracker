@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   assets: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.String,
     ref: 'Crypto'
   }]
 });
@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema({
 const  cryptoSchema= new mongoose.Schema({
   owner: {
     type: String
-    // ref: 'User'
   },
   asset: {
     type: String,

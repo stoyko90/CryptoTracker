@@ -3,30 +3,29 @@ const {User, Crypto} = require('../models/userModel');
 
 async function binanceAccountApi(req, res) {
   const {key, secret} = await req.body;
-  const user = await User.findOneAndUpdate({userName: req.user.userName}, {binanceKey: key, binanceSecret: secret});
+  const user = await User.findOneAndUpdate({userName: req.user.userName}, {binanceKey: key, binanceSecret: secret}, {new: true});
 
   const client = Binance({
     apiKey: user.binanceKey,
     apiSecret: user.binanceSecret
   });
 
-  client.accountInfo().then(data => {
-    // console.log(data.balances);
-    for (let crypto of data.balances) {
-        const newCrypto = new Crypto({owner: user.userName, asset: crypto.asset, amount: crypto.free});
-        newCrypto.save();
-      }
-    }) 
-    // const user2 = await User.findOne({userName: user.userName}).populate('assets').exec();
-    // console.log(user2);
-    await User.findOne({userName: 'stoyko90'}).populate({
-      path: 'assets',
-      model: 'Crypto'
-    }).exec((err, data) => {
-      if (err) return handleError(err);
-      console.log(data.populate('assets'));
-    });
-  res.send('YOOOOO');
-}
+  client.accountInfo().then(async (data) => {
+    user.assets = [];
+    for (let i = 0; i < data.balances.length; i++) {
+      const crypto = data.balances[i];
 
-module.exports = {binanceAccountApi};
+      const filter = {owner: user.userName, asset: crypto.asset}
+      const update = {amount: crypto.free}
+      const newCrypto = await Crypto.findOneAndUpdate(filter, update, {
+        new: true,
+        upsert: true
+      }); 
+      user.assets.push(newCrypto._id);
+    }
+    await user.save();
+    res.send(data);
+  })       
+}
+    
+    module.exports = {binanceAccountApi};

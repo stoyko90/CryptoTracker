@@ -43,8 +43,11 @@ async function logout(req, res) {
 }
 
 async function profile(req, res) {
-  //TO DO: to send back the user's specific data from the db ( portfolio, trades, etc)
-  res.send(req.user.name);
+    User.findOne({userName: req.user.userName}).populate('assets').exec((err, userData) => {
+      if (err) return handleError(err);
+      const filteredData = userData.assets.filter(el => el.amount > 0);
+      res.send(filteredData);
+    })
 }
 
 
