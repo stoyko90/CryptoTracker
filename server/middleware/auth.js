@@ -15,7 +15,7 @@ async function authToken(req, res, next) {
     req.user = user;
     next();
   } catch(error) {
-    res.status(401).send('something is fucked');
+    res.sendStatus(401);
   }
 }
 
