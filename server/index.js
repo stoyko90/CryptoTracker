@@ -4,8 +4,9 @@ const router = require('./routers/router');
 const cors = require('cors');
 
 const SERVER_PORT = process.env.SERVER_PORT || 3300;
+const CLIENT_PORT = process.env.CLIENT_PORT || 3000;
 const corsConfig = {
-  origin: `http://localhost:${SERVER_PORT}`,
+  origin: `http://localhost:${CLIENT_PORT}`,
   credentials: true
 };
 
