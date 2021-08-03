@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import fetchFunc from '../../helpers/binanceApiHelper';
 import { symbols } from '../../helpers/binanceSymbols';
+import Register from '../Register/Register';
+import { Link } from 'react-router-dom'; 
 export default function Home() {
 
-  const URL =  'https://api.binance.com/api/v3/ticker/price?symbol=';
   
   const [btc, setBtc] = useState('');
   const [eth, setEth] = useState('');
@@ -22,7 +23,12 @@ export default function Home() {
   const setSymbols = [setBtc, setEth, setBnb, setAda, setXrp, setDoge, setDot, setUni, setLink, setLtc, setSol, setXlm, setVet];
 
   useEffect(() => {
-    const interval = fetchFunc(URL, symbols, setSymbols);
+    fetchFunc(symbols, setSymbols);
+    const interval = setInterval(() => {
+      fetchFunc(symbols, setSymbols);
+
+    }, 30000)
+
     return () => {
       clearInterval(interval);
     }
@@ -43,6 +49,7 @@ export default function Home() {
       <p>{sol.symbol}: {sol.price}</p>
       <p>{xlm.symbol}: {xlm.price}</p>
       <p>{vet.symbol}: {vet.price}</p>
+      <Link to="/register">Register</Link>
     </div>
   )
 }

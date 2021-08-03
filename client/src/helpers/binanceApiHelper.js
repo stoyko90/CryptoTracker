@@ -1,10 +1,8 @@
-export default function fetchFunc(url, symbols, setSymbols) {
-
-  return setInterval(() => {
+export default function fetchFunc(symbols, setSymbols) {
     for(let i = 0; i < symbols.length; i++) {
-      fetch(url + symbols[i])
+      fetch('https://api.binance.com/api/v3/ticker/price?symbol=' + symbols[i])
       .then(response => response.json())
       .then(data => setSymbols[i](data));
     }
-  }, 30000)
+  
 } 
