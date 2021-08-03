@@ -1,4 +1,3 @@
-// const { Schema } = require('mongoose');
 const mongoose = require('../db/db');
 
 const userSchema = new mongoose.Schema({
@@ -30,20 +29,7 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
-const  cryptoSchema= new mongoose.Schema({
-  owner: {
-    type: String
-  },
-  asset: {
-    type: String,
-    required: true
-  },
-  amount: {
-    type: Number,
-    required: true
-  }
-});
+
 
 const User = mongoose.model('User', userSchema);
-const Crypto = mongoose.model('Crypto', cryptoSchema);
-module.exports = {User, Crypto};
+module.exports = {User};

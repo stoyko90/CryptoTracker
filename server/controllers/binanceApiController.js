@@ -1,5 +1,6 @@
 const Binance = require('binance-api-node').default;
-const {User, Crypto} = require('../models/userModel');
+const {User} = require('../models/userModel');
+const {Crypto} = require('../models/cryptoModel');
 
 async function binanceAccountApi(req, res) {
   const {key, secret} = await req.body;
@@ -15,8 +16,9 @@ async function binanceAccountApi(req, res) {
     for (let i = 0; i < data.balances.length; i++) {
       const crypto = data.balances[i];
 
-      const filter = {owner: user.userName, asset: crypto.asset}
-      const update = {amount: crypto.free}
+      const filter = {owner: user.userName, asset: crypto.asset};
+      const update = {amount: crypto.free};
+      
       const newCrypto = await Crypto.findOneAndUpdate(filter, update, {
         new: true,
         upsert: true
