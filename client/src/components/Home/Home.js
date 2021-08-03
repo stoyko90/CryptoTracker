@@ -49,7 +49,8 @@ export default function Home() {
       <p>{sol.symbol}: {sol.price}</p>
       <p>{xlm.symbol}: {xlm.price}</p>
       <p>{vet.symbol}: {vet.price}</p>
-      <Link to="/register">Register</Link>
+      <Link to="/register">Register</Link><br/>
+      <Link to="/login">Log In</Link>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Home from '../Home/Home';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 
@@ -18,6 +19,9 @@ export default function App() {
         </Route>
         <Route path='/register'>
           <Register />
+        </Route>
+        <Route path='/login'>
+          <Login />
         </Route>
       </Switch>
     </div>
