@@ -31,7 +31,7 @@ async function login(req, res) {
     if(!user) throw new Error();
     const correctPassword = await bcrypt.compare(password, user.password);
     if(!correctPassword) throw new Error()
-      const accessToken = jwt.sign({userName}, ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      const accessToken = jwt.sign({userName}, ACCESS_TOKEN_SECRET, { expiresIn: '6h' });
       res.status(200).send({accessToken});
   } catch(error) {
     res.status(401).send({error, message: 'Incorrect username or password'});
