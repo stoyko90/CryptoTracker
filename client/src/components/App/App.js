@@ -3,6 +3,7 @@ import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import Binance from '../Binance/Binance';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 
@@ -26,6 +27,9 @@ export default function App() {
         </Route>
         <Route path='/profile'>
           <Profile />
+        </Route>
+        <Route path='/api-manager/binance'>
+          <Binance />
         </Route>
       </Switch>
     </div>

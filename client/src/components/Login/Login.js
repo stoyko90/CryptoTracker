@@ -32,11 +32,11 @@ export default function Login() {
       setSubmitted(true);
       return response.json()
     })
-    .then(data => console.log(data))
+    .then(data => localStorage.setItem('jwToken', data.accessToken))
   }
 
   if (submitted) {
-    return <Redirect to='/profile'/>
+    return <Redirect to='/api-manager/binance'/>
   }
 
 

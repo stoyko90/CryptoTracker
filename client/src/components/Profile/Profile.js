@@ -4,8 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 export default function Profile() {
 
-  const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InN0b3lrbzkwIiwiaWF0IjoxNjI4MDM0MzI4LCJleHAiOjE2MjgwNTU5Mjh9.1_w3CkRhMJrHPNQy_TJN-31Z0jzMOrRR4YWPqDugHw0';
-
+  const authToken = localStorage.getItem('jwToken');
   const URL = 'http://localhost:3300/profile';
   const [cryptos, setCryptos] = useState([]);
 
@@ -19,6 +18,7 @@ export default function Profile() {
     .then(response => response.json())
     .then(data => setCryptos(data))
   }, []);
+
 
   return (
     <div>

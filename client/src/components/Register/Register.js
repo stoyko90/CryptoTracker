@@ -32,7 +32,7 @@ export default function Register() {
         setSubmitted(true);
         return response.json()
       })
-      .then(data => console.log(data))
+      .then(data => console.log('Registered'))
    
   }
 
