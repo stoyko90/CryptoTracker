@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 export default function Login() {
 
   const [user, setUser] = useState({userName: '', password: ''});
+  const [submitted, setSubmitted] = useState(false);
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -27,6 +28,15 @@ export default function Login() {
       },
       body: JSON.stringify(user)
     })
+    .then(response => {
+      setSubmitted(true);
+      return response.json()
+    })
+    .then(data => console.log(data))
+  }
+
+  if (submitted) {
+    return <Redirect to='/profile'/>
   }
 
 

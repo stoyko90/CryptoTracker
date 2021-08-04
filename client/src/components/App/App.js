@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 
@@ -22,6 +23,9 @@ export default function App() {
         </Route>
         <Route path='/login'>
           <Login />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
         </Route>
       </Switch>
     </div>
