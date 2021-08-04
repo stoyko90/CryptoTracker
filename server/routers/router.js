@@ -9,7 +9,7 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/profile', authToken, profile);
 router.post('/logout', authToken, logout);
-router.post('/profile/api-manager/binance', authToken, binanceAccountApi);
+router.post('/api-manager/binance', authToken, binanceAccountApi);
 
 
 module.exports = router;
